@@ -1,0 +1,10 @@
+#items {
+  display: flex;
+  flex-direction: column;
+
+  .list {
+    span:hover {
+      cursor: default;
+    }
+  }
+}

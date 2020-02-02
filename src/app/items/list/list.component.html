@@ -1,0 +1,128 @@
+<div id="items">
+  <header class="header">
+    <form (ngSubmit)="addItem(inputAdd.value, form)" #form="ngForm" novalidate>
+      <div class="form-group d-flex justify-content-center">
+        <div class="d-flex align-items-center">
+          <span class="mr-2">Itens da Lista</span>
+          <span class="badge badge-info">
+            {{ listName }}
+          </span>
+        </div>
+      </div>
+      <div class="form-group d-flex justify-content-center">
+        <input
+          class="form-control col-sm-10 mr-2"
+          placeholder="Adicionar novo Item"
+          name="addItem"
+          #inputAdd="ngModel"
+          ngModel
+          required
+        />
+        <button class="btn btn-primary mr-2" [disabled]="!form.valid">
+          Adicionar
+        </button>
+        <button class="btn btn-secondary" (click)="handleBack()" type="button">
+          Voltar
+        </button>
+      </div>
+    </form>
+  </header>
+
+  <main>
+    <section class="content" *ngIf="!noRegister">
+      <div class="container">
+        <div class="card">
+          <div class="card-header">A Fazer</div>
+          <div
+            class="list alert alert-primary"
+            *ngFor="let item of itemsTodo"
+            id="{{ item.id }}"
+          >
+            <span>{{ item.name }}</span>
+            <div class="btn-group rounded-pill">
+              <button
+                class="rounded-circle border-0"
+                (click)="updateItem(true, item)"
+              >
+                <i class="fas fa-check"></i>
+              </button>
+              <button
+                class="rounded-circle border-0"
+                (click)="openModal(template, item)"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                class="rounded-circle border-0"
+                (click)="handleDelete(item.id)"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="card">
+          <div class="card-header">Feitos</div>
+          <div class="" *ngFor="let item of itemsDone" id="{{ item.id }}">
+            <div class="list alert alert-success">
+              <span>{{ item.name }}</span>
+              <div class="btn-group rounded-pill">
+                <button
+                  class="rounded-circle border-0"
+                  (click)="updateItem(true, item)"
+                >
+                  <i class="fas fa-undo"></i>
+                </button>
+                <button
+                  class="rounded-circle border-0"
+                  (click)="openModal(template, item)"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="rounded-circle border-0"
+                  (click)="handleDelete(item.id)"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" *ngIf="noRegister">
+      <div class="container">
+        <div class="card">
+          <span class="m-2">Não há itens nessa lista...</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Modal Template -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <b>Atualizar Item</b>
+    <input
+      class="form-control mb-2"
+      type="text"
+      name="editItem"
+      [value]="editItem.name"
+      #ref
+    />
+    <div class="modal-footer">
+      <button class="btn btn-primary" (click)="confirmUpdate(ref.value)">
+        Salvar
+      </button>
+      <button class="btn btn-secondary" (click)="closeModal()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</ng-template>

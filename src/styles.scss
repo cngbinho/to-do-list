@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+
+* {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.header {
+  font-size: 30px;
+  padding: 10px;
+  background-color: rgb(108, 190, 238);
+  border-radius: 5px;
+}
+
+.content {
+  display: flex;
+  margin-top: 5px;
+
+  background-color: rgb(108, 190, 238);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+
+  span {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 0.75rem 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.btn-group {
+  padding: 5px;
+  background-color: #17a2b8;
+  height: 38px;
+
+  button:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  button:hover {
+    background-color: #d0cfcf;
+  }
+}
+
+.alert {
+  padding: 0 1.25rem !important;
+}
